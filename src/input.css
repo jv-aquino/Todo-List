@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab&display=swap');
+
+* {
+  font-family: 'Lato', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+h1 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+}
+
+body {
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr 6fr;
+  grid-template-areas: "nav nav" "projects main";
+
+  width: 100vw;
+  height: 100vh;
+}
+
+nav {
+  grid-area: nav;
+}
+.projects {
+  grid-area: projects;
+}
+main {
+  grid-area: main;
+}
