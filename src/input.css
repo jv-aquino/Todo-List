@@ -15,7 +15,7 @@ h1 {
 }
 
 body {
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: min(320px, 65vw) 1fr;
   grid-template-rows: 1fr 6fr;
   grid-template-areas: "nav nav" "projects main";
 
@@ -31,4 +31,18 @@ nav {
 }
 main {
   grid-area: main;
+}
+
+button.addProject {
+  font-size: 1.6rem;
+}
+button.addProject .addSign {
+  font-size: 2.2rem;
+}
+
+button.addTask {
+  font-size: 1.6rem;
+}
+button.addTask .addSign {
+  font-size: 2.2rem;
 }
