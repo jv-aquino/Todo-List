@@ -1,7 +1,8 @@
-import * as forms from "./forms";
+import * as Dom from "./dom";
 
 const Project = (name) => {
   const tasks = [];
+  const getTasks = () => tasks;
 
   const addTask = (Task) => {
     tasks.push(Task);
@@ -16,11 +17,11 @@ const Project = (name) => {
 
   const getName = () => name;
 
-  return {addTask, getName, removeTask};
+  return {addTask, getName, removeTask, getTasks};
 };
 
 const Task = (title, description, dueDate, priority) => {
-  let checked;
+  let checked = false;
 
   const getTitle = () => title;
   const getDescription = () => description;
@@ -43,58 +44,63 @@ const Task = (title, description, dueDate, priority) => {
   };
 };
 
-const Dom = (() => {
-  const showTaskForm = () => {
-    const main = document.querySelector("main");
-    main.appendChild(forms.createTaskForm());
+const State = (() => {
+  let currentProject;  
+  const getCurrentProject = () => currentProject;
 
+  const setCurrentProject = (project) => {
+    currentProject = project;
   };
 
-  const showProjectForm = () => {
-    const projectsSection = document.querySelector("section.projects");
-    projectsSection.appendChild(forms.createProjectForm());
-
-  };
-
-  const refreshProjects = () => {
-
-  };
-
-  const refreshTasks = () => {
-
-  };
-
-  return {showTaskForm, showProjectForm};
+  return {setCurrentProject, getCurrentProject};
 })();
 
 const Controller = (() => {
   const projects = [];
+  const getProjects = () => projects;
 
-  const createProject = (title) => {
-    projects.push(Project(title));
+  const createProject = (name) => {
+    projects.push(Project(name));
+
+    Dom.appendAddProject();
+    activateListener("showAddProject");
   };
 
-  const createTask = () => {
-    
+  const createTask = (title, description, dueDate, priority) => {
+    /*
+    let newTask = Task(title, description, dueDate, priority);
+    let actualProject = State.getCurrentProject(); // Logic to find the project
+    actualProject.addTask(newTask);
+    */
+
+    Dom.appendAddTask();
+    activateListener("showAddTask");
   };
 
-  return {createProject, createTask};
+  const activateListener = (buttonClass) => {
+    let element = document.querySelector("." + buttonClass);
+
+    switch (buttonClass) {
+      case "showAddProject":
+        element.addEventListener("click", Dom.showProjectForm);
+        element.addEventListener("click", Dom.removeAddProject);
+        break;
+
+      case "showAddTask":
+        element.addEventListener("click", Dom.showTaskForm);
+        element.addEventListener("click", Dom.removeAddTask);
+        break;
+      
+      default:
+        break;
+    }
+  };
+
+  return {getProjects, createProject, createTask, activateListener};
 })();
 
-const Interface = (() => {
-  const showAddTask = document.querySelector("button.showAddTask");
-  showAddTask.addEventListener("click", Dom.showTaskForm);
-
-  const showAddProject = document.querySelector("button.showAddProject");
-  showAddProject.addEventListener("click", Dom.showProjectForm);
-
-  const removeAddTask = () => {
-    
-  };
-
-  const removeAddProject = () => {
-    
-  };
-
-  return {removeAddTask, removeAddProject};
+const Default = (() => {
+  Controller.createProject("Default");
+  Dom.appendAddTask();
+  Controller.activateListener("showAddTask");
 })();
