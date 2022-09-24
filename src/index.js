@@ -1,3 +1,5 @@
+import * as forms from "./forms";
+
 const Project = (name) => {
   const tasks = [];
 
@@ -17,34 +19,82 @@ const Project = (name) => {
   return {addTask, getName, removeTask};
 };
 
-const Task = (name) => {
+const Task = (title, description, dueDate, priority) => {
   let checked;
 
-  const getName = () => name;
+  const getTitle = () => title;
+  const getDescription = () => description;
+  const getDueDate = () => dueDate;
+  const getPriority = () => priority;
+
   const isChecked = () => checked;
 
   const toggleChecked = () => {
     checked = !checked;
   };
 
-  return {getName, isChecked, toggleChecked};
+  return {
+    getTitle,
+    getDescription,
+    getDueDate,
+    getPriority,
+    isChecked,
+    toggleChecked,
+  };
 };
 
-const DOM = () => {
-  const addTaskButton = document.querySelector("button.addTask");
-  const addProjectButton = document.querySelector("button.addProject");
+const Dom = (() => {
+  const showTaskForm = () => {
+    const main = document.querySelector("main");
+    main.appendChild(forms.createTaskForm());
 
-  return {};
-};
+  };
 
-const Controller = () => {
-  const createProject = () => {
+  const showProjectForm = () => {
+    const projectsSection = document.querySelector("section.projects");
+    projectsSection.appendChild(forms.createProjectForm());
 
+  };
+
+  const refreshProjects = () => {
+
+  };
+
+  const refreshTasks = () => {
+
+  };
+
+  return {showTaskForm, showProjectForm};
+})();
+
+const Controller = (() => {
+  const projects = [];
+
+  const createProject = (title) => {
+    projects.push(Project(title));
   };
 
   const createTask = () => {
-
+    
   };
 
   return {createProject, createTask};
-};
+})();
+
+const Interface = (() => {
+  const showAddTask = document.querySelector("button.showAddTask");
+  showAddTask.addEventListener("click", Dom.showTaskForm);
+
+  const showAddProject = document.querySelector("button.showAddProject");
+  showAddProject.addEventListener("click", Dom.showProjectForm);
+
+  const removeAddTask = () => {
+    
+  };
+
+  const removeAddProject = () => {
+    
+  };
+
+  return {removeAddTask, removeAddProject};
+})();

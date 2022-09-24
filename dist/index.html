@@ -4,22 +4,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Lato&display=swap" rel="stylesheet">
+  <!-- Icons --> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
   <link rel="stylesheet" href="./main.css">
   <title>Todo List</title>
 </head>
 <body class="grid">
-  <nav class="bg-stone-800 p-6">
+  <nav class="bg-stone-900">
     <h1 class="text-4xl text-slate-100">✔ Todo List</h1>
   </nav>
 
-  <section class="projects bg-violet-200">
-    <h2 class="">Your Projects</h2>
-    <button type="button" class="addProject flex items-center font-bold">Add Project <span class="addSign pl-1">+</span></button>
+  <section class="projects bg-red-100 p-4">
+    <h2 class="font-bold text-2xl text-green-900">Your Projects</h2>
+    <button type="button" class="showAddProject">Add Project <span class="addSign pl-1">+</span></button>
   </section>
 
-  <main class="bg-stone-50">
+  <main class="bg-stone-50 p-4">
     <h2 class="project"></h2>
-    <button type="button" class="addTask flex items-center font-bold">Add Task <span class="addSign pl-1">+</span></button>
+    <button type="button" class="showAddTask">Add Task <span class="addSign pl-1">+</span></button>
   </main>
 
   <script src="./main.js"></script>

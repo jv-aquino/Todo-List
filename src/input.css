@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab&display=swap');
-
 * {
   font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
+  color: rgb(28, 25, 23);
+  outline: none;
 }
 h1 {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Courgette';
+  font-style: italic;
   font-weight: bold;
 }
 
@@ -25,6 +26,8 @@ body {
 
 nav {
   grid-area: nav;
+  padding: 1.5rem;
+  display: flex;
 }
 .projects {
   grid-area: projects;
@@ -33,16 +36,40 @@ main {
   grid-area: main;
 }
 
-button.addProject {
-  font-size: 1.6rem;
-}
-button.addProject .addSign {
-  font-size: 2.2rem;
+nav h1 {
+  margin-top: 3px;
 }
 
-button.addTask {
-  font-size: 1.6rem;
+label, input[type=radio] {
+  cursor: pointer;
 }
-button.addTask .addSign {
-  font-size: 2.2rem;
+
+button, span {
+  color: rgb(28, 25, 23);
+  margin: 0;
+  padding: 0;
+}
+button {
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+}
+
+button.showAddProject {
+  font-size: 1.3rem;
+}
+button.showAddProject .addSign {
+  font-size: 1.5rem;
+}
+
+button.showAddTask {
+  font-size: 1.7rem;
+}
+button.showAddTask .addSign {
+  font-size: 1.9rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
