@@ -3,46 +3,46 @@ import * as forms from "./forms";
 const main = document.querySelector("main");
 const projectsSection = document.querySelector("section.projects");
 
-const showTaskForm = () => {
-  main.appendChild(forms.createTaskForm());
+const refreshDom = (type, arr) => {
+  if (type == "Project") {
+    arr.forEach(Project => {
+      if (!Project.isOnDom()) {
+        Project.toggleOnDom();
+        main.appendChild();
+      }
+    });
+  }
+  else if (type == "Task") {
+
+  }
 };
 
-const showProjectForm = () => {
-  projectsSection.appendChild(forms.createProjectForm());
+const switchProject = () => {};
+
+const showForm = (buttonClass) => {
+  (buttonClass == "showAddTask") ? main.appendChild(forms.createTaskForm()) 
+  : projectsSection.appendChild(forms.createProjectForm());
 };
 
-const refreshProjects = () => {};
+const appendButton = (buttonClass) => {
+  const button = document.createElement("button");
+  const parent = (buttonClass == "showAddTask") ? main : projectsSection;
+  const type = (buttonClass == "showAddTask") ? "Task" : "Project";
 
-const refreshTasks = () => {};
+  button.innerHTML = '<button type="button" class="'+ buttonClass +'">Add '+type+' <span class="addSign pl-1">+</span></button>';
 
-const appendAddTask = () => {
-  const showAddTask = document.createElement("button");
-  showAddTask.innerHTML = '<button type="button" class="showAddTask">Add Task <span class="addSign pl-1">+</span></button>';
-
-  main.appendChild(showAddTask);
-};
-const appendAddProject = () => {
-  const showAddProject = document.createElement("button");
-  showAddProject.innerHTML = '<button type="button" class="showAddProject">Add Project <span class="addSign pl-1">+</span></button>';
-
-  projectsSection.appendChild(showAddProject);
+  parent.appendChild(button);
 };
 
-const removeAddTask = () => {
-  const showAddTask = document.querySelector("main button.showAddTask");
-  showAddTask.remove();
-};
-
-const removeAddProject = () => {
-  const showAddProject = document.querySelector("section button.showAddProject");
-  showAddProject.remove();
+const removeButton = (buttonClass) => {
+  const element = document.querySelector("button." + buttonClass);
+  element.remove();
 };
 
 export {
-  appendAddTask,
-  appendAddProject,
-  removeAddTask,
-  removeAddProject,
-  showTaskForm,
-  showProjectForm,
+  appendButton,
+  removeButton,
+  showForm,
+  switchProject,
+  refreshDom,
 };

@@ -1,20 +1,11 @@
 const Utilities = (() => {
-  const createAddButton = () => {
-    const addButton = document.createElement("button");
-    addButton.type = "submit";
-    addButton.classList.add("add");
-    addButton.textContent = "Add";
+  const createButton = (type) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add(type.toLowerCase());
+    button.textContent = type;
 
-    return addButton;
-  };
-
-  const createCancelButton = () => {
-    const cancelButton = document.createElement("button");
-    cancelButton.type = "button";
-    cancelButton.classList.add("cancel");
-    cancelButton.textContent = "Cancel";
-
-    return cancelButton;
+    return button;
   };
 
   const createFlagSpan = (colorClass) => {
@@ -26,7 +17,7 @@ const Utilities = (() => {
     return span;
   }
 
-  return {createAddButton, createCancelButton, createFlagSpan};
+  return {createButton, createFlagSpan};
 })();
 
 const createProjectForm = () => {
@@ -38,8 +29,8 @@ const createProjectForm = () => {
   nameInput.placeholder = "Project Name";
 
   form.appendChild(nameInput);
-  form.appendChild(Utilities.createAddButton());
-  form.appendChild(Utilities.createCancelButton());
+  form.appendChild(Utilities.createButton("Add"));
+  form.appendChild(Utilities.createButton("Cancel"));
 
   return form;
 };
@@ -80,8 +71,8 @@ const createTaskForm = () => {
     form.appendChild(input);
   });
 
-  form.appendChild(Utilities.createAddButton());
-  form.appendChild(Utilities.createCancelButton());
+  form.appendChild(Utilities.createButton("Add"));
+  form.appendChild(Utilities.createButton("Cancel"));
 
   return form;
 }

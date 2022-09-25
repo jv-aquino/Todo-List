@@ -711,6 +711,6 @@ button.showAddTask .addSign {
   font-size: 1.9rem;
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+section form {
+  padding-top: 6px;
 }

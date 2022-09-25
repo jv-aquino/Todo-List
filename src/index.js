@@ -17,7 +17,13 @@ const Project = (name) => {
 
   const getName = () => name;
 
-  return {addTask, getName, removeTask, getTasks};
+  let onDom = false;
+  const isOnDom = () => onDom;
+  const toggleOnDom = () => {
+    onDom = !onDom;
+  };
+
+  return {addTask, getName, removeTask, getTasks, isOnDom, toggleOnDom};
 };
 
 const Task = (title, description, dueDate, priority) => {
@@ -62,38 +68,24 @@ const Controller = (() => {
   const createProject = (name) => {
     projects.push(Project(name));
 
-    Dom.appendAddProject();
+    Dom.appendButton("showAddProject");
     activateListener("showAddProject");
   };
 
   const createTask = (title, description, dueDate, priority) => {
-    /*
     let newTask = Task(title, description, dueDate, priority);
-    let actualProject = State.getCurrentProject(); // Logic to find the project
+    let actualProject = State.getCurrentProject();
     actualProject.addTask(newTask);
-    */
 
-    Dom.appendAddTask();
+    Dom.appendButton("showAddTask");
     activateListener("showAddTask");
   };
 
   const activateListener = (buttonClass) => {
     let element = document.querySelector("." + buttonClass);
 
-    switch (buttonClass) {
-      case "showAddProject":
-        element.addEventListener("click", Dom.showProjectForm);
-        element.addEventListener("click", Dom.removeAddProject);
-        break;
-
-      case "showAddTask":
-        element.addEventListener("click", Dom.showTaskForm);
-        element.addEventListener("click", Dom.removeAddTask);
-        break;
-      
-      default:
-        break;
-    }
+    element.addEventListener("click", () => {Dom.showForm(buttonClass)});
+    element.addEventListener("click", () => {Dom.removeButton(buttonClass)});
   };
 
   return {getProjects, createProject, createTask, activateListener};
@@ -101,6 +93,6 @@ const Controller = (() => {
 
 const Default = (() => {
   Controller.createProject("Default");
-  Dom.appendAddTask();
+  Dom.appendButton("showAddTask");
   Controller.activateListener("showAddTask");
 })();
