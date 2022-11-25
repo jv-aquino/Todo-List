@@ -50,7 +50,7 @@ const Task = (title, description, dueDate, priority) => {
   };
 };
 
-const State = (() => {
+const Info = (() => {
   let currentProject;  
   const getCurrentProject = () => currentProject;
 
@@ -65,16 +65,16 @@ const Controller = (() => {
   const projects = [];
   const getProjects = () => projects;
 
-  const createProject = (name) => {
-    projects.push(Project(name));
+  const createProject = (projectName) => {
+    projects.push(Project(projectName));
 
     Dom.appendButton("showAddProject");
     activateListener("showAddProject");
   };
 
-  const createTask = (title, description, dueDate, priority) => {
+  const createTask = () => {
     let newTask = Task(title, description, dueDate, priority);
-    let actualProject = State.getCurrentProject();
+    let actualProject = Info.getCurrentProject();
     actualProject.addTask(newTask);
 
     Dom.appendButton("showAddTask");
@@ -82,10 +82,23 @@ const Controller = (() => {
   };
 
   const activateListener = (buttonClass) => {
+    if (!(buttonClass.includes("show"))) {
+      const addButton = document.querySelector(buttonClass + " .add");
+      addButton.addEventListener("click", () => {
+        (buttonClass == "main") ? Controller.createTask() : Controller.createProject();
+      });
+      return 0;
+    }
+    
     let element = document.querySelector("." + buttonClass);
 
-    element.addEventListener("click", () => {Dom.showForm(buttonClass)});
-    element.addEventListener("click", () => {Dom.removeButton(buttonClass)});
+    element.addEventListener("click", () => {
+      Dom.showForm(buttonClass);
+      Dom.removeButton(buttonClass)
+
+      const addDiv = (buttonClass == "showAddTask") ? "main" : "section";
+      activateListener(addDiv);
+    });
   };
 
   return {getProjects, createProject, createTask, activateListener};

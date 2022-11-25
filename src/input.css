@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
-  color: rgb(28, 25, 23);
+
+  font-family: 'Lato', sans-serif;
+  
   outline: none;
 }
+
 h1 {
   font-family: 'Courgette';
   font-style: italic;
@@ -56,7 +58,12 @@ button {
   font-weight: bold;
 }
 
+button span {
+  color: inherit;
+}
+
 button.showAddProject {
+  color: #be185d;
   font-size: 1.3rem;
 }
 button.showAddProject .addSign {
@@ -68,6 +75,11 @@ button.showAddTask {
 }
 button.showAddTask .addSign {
   font-size: 1.9rem;
+}
+
+button.add,
+button.cancel {
+
 }
 
 section form {

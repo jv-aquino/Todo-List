@@ -564,9 +564,9 @@ video {
   background-color: rgb(28 25 23 / var(--tw-bg-opacity));
 }
 
-.bg-red-100 {
+.bg-stone-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+  background-color: rgb(214 211 209 / var(--tw-bg-opacity));
 }
 
 .bg-stone-50 {
@@ -625,14 +625,14 @@ video {
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
-.text-slate-100 {
+.text-stone-100 {
   --tw-text-opacity: 1;
-  color: rgb(241 245 249 / var(--tw-text-opacity));
+  color: rgb(245 245 244 / var(--tw-text-opacity));
 }
 
-.text-green-900 {
+.text-stone-900 {
   --tw-text-opacity: 1;
-  color: rgb(20 83 45 / var(--tw-text-opacity));
+  color: rgb(28 25 23 / var(--tw-text-opacity));
 }
 
 .outline {
@@ -640,10 +640,9 @@ video {
 }
 
 * {
-  font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
-  color: rgb(28, 25, 23);
+  font-family: 'Lato', sans-serif;
   outline: none;
 }
 
@@ -695,7 +694,12 @@ button {
   font-weight: bold;
 }
 
+button span {
+  color: inherit;
+}
+
 button.showAddProject {
+  color: #be185d;
   font-size: 1.3rem;
 }
 
@@ -709,6 +713,10 @@ button.showAddTask {
 
 button.showAddTask .addSign {
   font-size: 1.9rem;
+}
+
+button.add,
+button.cancel {
 }
 
 section form {

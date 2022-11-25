@@ -3,6 +3,8 @@ import * as forms from "./forms";
 const main = document.querySelector("main");
 const projectsSection = document.querySelector("section.projects");
 
+
+
 const refreshDom = (type, arr) => {
   if (type == "Project") {
     arr.forEach(Project => {
@@ -20,8 +22,14 @@ const refreshDom = (type, arr) => {
 const switchProject = () => {};
 
 const showForm = (buttonClass) => {
-  (buttonClass == "showAddTask") ? main.appendChild(forms.createTaskForm()) 
-  : projectsSection.appendChild(forms.createProjectForm());
+  if (buttonClass == "showAddTask") {
+    main.appendChild(forms.createTaskForm());
+    const submitButton = document.querySelector("main ." + buttonClass);
+  }
+  else { 
+    projectsSection.appendChild(forms.createProjectForm());
+    const submitButton = document.querySelector("section ." + buttonClass);
+  }
 };
 
 const appendButton = (buttonClass) => {
