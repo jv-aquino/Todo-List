@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --gray500: hsl(25, 5%, 45%);
+
+  --base-font: 1rem;
+  
+  --base-padding: 16px;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -11,16 +19,10 @@
   outline: none;
 }
 
-h1 {
-  font-family: 'Courgette';
-  font-style: italic;
-  font-weight: bold;
-}
-
 body {
   grid-template-columns: min(320px, 65vw) 1fr;
   grid-template-rows: 1fr 6fr;
-  grid-template-areas: "nav nav" "projects main";
+  grid-template-areas: "nav nav" "projects tasks";
 
   width: 100vw;
   height: 100vh;
@@ -28,22 +30,60 @@ body {
 
 nav {
   grid-area: nav;
-  padding: 1.5rem;
+  padding: calc(var(--base-padding) * 1.2);
   display: flex;
 }
+nav h1 {
+  margin-top: 3px;
+  
+  font-family: 'Courgette';
+  font-style: italic;
+  font-weight: bold;
+  font-size: calc(var(--base-font) * 2.5);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .projects {
   grid-area: projects;
 }
-main {
-  grid-area: main;
+.projects h2 {
+  font-size: calc(var(--base-font) * 1.75);
+}
+.projects form {
+  padding-top: calc(var(--base-padding) * 0.5);
 }
 
-nav h1 {
-  margin-top: 3px;
+.tasks {
+  grid-area: tasks;
 }
 
-label, input[type=radio] {
+form label, 
+form input[type=radio] {
   cursor: pointer;
+}
+form label span {
+  position: relative;
+  top: 5px;
+}
+
+form .add,
+form .cancel {
+  width: 100%;
+  
+  margin: 4px 0;
+  padding: 4px 6px;
+
+  border-radius: 4px;
+}
+
+form .add {
+  background-color: green;
+}
+form .cancel {
+  background-color: red;
 }
 
 button, span {
@@ -57,31 +97,26 @@ button {
 
   font-weight: bold;
 }
-
 button span {
   color: inherit;
 }
 
 button.showAddProject {
   color: #be185d;
-  font-size: 1.3rem;
+  font-size: calc(var(--base-font) * 1.4);
 }
-button.showAddProject .addSign {
+button.showAddProject span {
   font-size: 1.5rem;
 }
 
 button.showAddTask {
   font-size: 1.7rem;
 }
-button.showAddTask .addSign {
+button.showAddTask span {
   font-size: 1.9rem;
 }
 
-button.add,
-button.cancel {
-
-}
-
-section form {
-  padding-top: 6px;
+form input[type=text] {
+  padding: 4px;
+  border: 1px solid var(--gray500);
 }

@@ -1,16 +1,14 @@
-import * as forms from "./forms";
+import * as Forms from "./forms";
 
-const main = document.querySelector("main");
-const projectsSection = document.querySelector("section.projects");
-
-
+const tasks = document.querySelector(".tasks");
+const projects = document.querySelector(".projects");
 
 const refreshDom = (type, arr) => {
   if (type == "Project") {
     arr.forEach(Project => {
       if (!Project.isOnDom()) {
         Project.toggleOnDom();
-        main.appendChild();
+        tasks.appendChild();
       }
     });
   }
@@ -23,21 +21,23 @@ const switchProject = () => {};
 
 const showForm = (buttonClass) => {
   if (buttonClass == "showAddTask") {
-    main.appendChild(forms.createTaskForm());
-    const submitButton = document.querySelector("main ." + buttonClass);
+    tasks.appendChild(Forms.createTaskForm());
+    const submitButton = document.querySelector(".tasks ." + buttonClass);
   }
   else { 
-    projectsSection.appendChild(forms.createProjectForm());
-    const submitButton = document.querySelector("section ." + buttonClass);
+    projects.appendChild(Forms.createProjectForm());
+    const submitButton = document.querySelector(".projects ." + buttonClass);
   }
 };
 
 const appendButton = (buttonClass) => {
   const button = document.createElement("button");
-  const parent = (buttonClass == "showAddTask") ? main : projectsSection;
+  button.classList.add(buttonClass);
+  
+  const parent = (buttonClass == "showAddTask") ? tasks : projects;
   const type = (buttonClass == "showAddTask") ? "Task" : "Project";
 
-  button.innerHTML = '<button type="button" class="'+ buttonClass +'">Add '+type+' <span class="addSign pl-1">+</span></button>';
+  button.innerHTML = 'Add '+ type +' <span class="pl-1">+</span>';
 
   parent.appendChild(button);
 };
