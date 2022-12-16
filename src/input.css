@@ -4,6 +4,7 @@
 
 :root {
   --gray500: hsl(25, 5%, 45%);
+  --gray800: hsl(24, 5%, 20%);
 
   --base-font: 1rem;
   
@@ -50,7 +51,14 @@ nav h1 {
   grid-area: projects;
 }
 .projects h2 {
+  color: #44403c;
   font-size: calc(var(--base-font) * 1.75);
+}
+.projects h3 {
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: calc(var(--base-font) * 1.3);
 }
 .projects form {
   padding-top: calc(var(--base-padding) * 0.5);
@@ -60,30 +68,66 @@ nav h1 {
   grid-area: tasks;
 }
 
-form label, 
-form input[type=radio] {
+form {
+  display: grid;
+  gap: calc(var(--base-padding) * 0.5);
+}
+
+form input[type=text] {
+  padding: 4px;
+  border: 1px solid var(--gray500);
+  border-radius: 2px;
+}
+
+form .priorities {
+  display: flex;
+  justify-content: space-evenly;
+  
+  padding-bottom: 4px;
+}
+form .priorities label {
+  padding: 0 4px;
+}
+form .priorities label, 
+form .priorities input {
   cursor: pointer;
 }
-form label span {
+form .priorities input {
+  position: relative;
+  top: 1px;
+}
+form .priorities label span {
   position: relative;
   top: 5px;
+
+  padding: 0 2px;
 }
 
+form .buttons {
+  padding: 0 10px;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+
+  gap: 30px;
+}
 form .add,
 form .cancel {
-  width: 100%;
-  
-  margin: 4px 0;
-  padding: 4px 6px;
+  width: 200px;
+  padding: 6px 8px;
 
   border-radius: 4px;
+  margin: auto;
 }
 
 form .add {
-  background-color: green;
+  background-color: hsl(120, 85%, 76%);
+  color: rgb(25, 94, 11);
 }
 form .cancel {
-  background-color: red;
+  background-color: hsl(0, 100%, 84%);
+  color: rgb(187, 9, 9);
 }
 
 button, span {
@@ -92,9 +136,6 @@ button, span {
   padding: 0;
 }
 button {
-  display: flex;
-  align-items: center;
-
   font-weight: bold;
 }
 button span {
@@ -114,9 +155,4 @@ button.showAddTask {
 }
 button.showAddTask span {
   font-size: 1.9rem;
-}
-
-form input[type=text] {
-  padding: 4px;
-  border: 1px solid var(--gray500);
 }

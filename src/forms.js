@@ -50,13 +50,18 @@ const createTaskForm = () => {
   form.appendChild(titleInput);
   form.appendChild(descriptionInput);
 
-  const priorities = [{"label": 'Very Low', "color": "text-yellow-200"}, 
+  const priorities = [{"label": 'Very Low', "color": "text-green-300"}, 
   {"label": 'Low', "color": "text-yellow-300"}, 
   {"label": 'Medium', "color": "text-yellow-500"}, 
   {"label": 'High', "color": "text-red-600"}, 
   {"label": 'Very High', "color": "text-red-700"}];
+  
+  const prioritiesDiv = document.createElement("div");
+  prioritiesDiv.classList.add("priorities")
 
   priorities.forEach(prority => {
+    const priorityDiv = document.createElement("div");
+
     const input = document.createElement("input");
     input.name = "priority";
     input.type = "radio";
@@ -67,12 +72,21 @@ const createTaskForm = () => {
     label.innerHTML = span + prority.label
     label.setAttribute('for', prority.label);
 
-    form.appendChild(label);
-    form.appendChild(input);
+    priorityDiv.appendChild(label);
+    priorityDiv.appendChild(input);
+
+    prioritiesDiv.appendChild(priorityDiv);
   });
 
-  form.appendChild(Utilities.createButton("Add"));
-  form.appendChild(Utilities.createButton("Cancel"));
+  form.appendChild(prioritiesDiv);
+
+  const buttons = document.createElement("div");
+  buttons.classList.add("buttons")
+
+  buttons.appendChild(Utilities.createButton("Add"));
+  buttons.appendChild(Utilities.createButton("Cancel"));
+
+  form.appendChild(buttons);
 
   return form;
 }

@@ -1,6 +1,8 @@
 import * as Dom from "./dom";
 
 const Project = (name) => {
+  const getName = () => name;
+
   const tasks = [];
   const getTasks = () => tasks;
 
@@ -15,7 +17,6 @@ const Project = (name) => {
     }
   }
 
-  const getName = () => name;
 
   let onDom = false;
   const isOnDom = () => onDom;
@@ -70,6 +71,8 @@ const Controller = (() => {
 
     Dom.appendButton("showAddProject");
     activateListener("showAddProject");
+
+    Dom.refresh("Projects", projects);
   };
 
   const createTask = () => {
@@ -79,6 +82,8 @@ const Controller = (() => {
 
     Dom.appendButton("showAddTask");
     activateListener("showAddTask");
+
+    Dom.refreshDom();
   };
 
   const activateListener = (buttonClass) => {

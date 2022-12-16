@@ -1,18 +1,25 @@
 import * as Forms from "./forms";
 
-const tasks = document.querySelector(".tasks");
 const projects = document.querySelector(".projects");
+const tasks = document.querySelector(".tasks");
 
-const refreshDom = (type, arr) => {
-  if (type == "Project") {
-    arr.forEach(Project => {
-      if (!Project.isOnDom()) {
-        Project.toggleOnDom();
-        tasks.appendChild();
+const createProject = (project) => {
+  const nome = document.createElement("h3");
+  nome.textContent = project.getName();
+
+  projects.insertBefore(nome, projects.lastChild);
+}
+
+const refresh = (type, arr) => {
+  if (type == "Projects") {
+    arr.forEach(project => {
+      if (!project.isOnDom()) {
+        project.toggleOnDom();
+        createProject(project);
       }
     });
   }
-  else if (type == "Task") {
+  else if (type == "Tasks") {
 
   }
 };
@@ -52,5 +59,5 @@ export {
   removeButton,
   showForm,
   switchProject,
-  refreshDom,
+  refresh,
 };
